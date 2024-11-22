@@ -95,29 +95,34 @@ func updateTask() {
 	fmt.Print("Enter the ID of the task to update: ")
 	fmt.Scan(&id)
 
+	found := false
+
 	for i, t := range taskList {
 		if t.ID == id {
+			found = true
 			fmt.Print("Enter new decription (leave empty to keep current): ")
 			fmt.Scanln(&description)
 			if description != "" {
 				taskList[i].Description = description
 			}
 
-			taskList[i].Description = description
-			taskList[i].Priority = priority
-
 			fmt.Print("Enter new priority (1 = High, 2 = Medium, 3 = Low): ")
 			_, err := fmt.Scan(&priority)
+
 			if err != nil && priority >= 1 && priority <= 3 {
 				taskList[i].Priority = priority
 			} else {
 				fmt.Println("Invalid priority. Keeping current priority.")
 			}
-			fmt.Printf("Task with ID %d updated successfully.\n", id)
-		}
-		fmt.Printf("Error: Task with ID %d not found.\n", id)
-	}
 
+			fmt.Printf("Task with ID %d updated successfully.\n", id)
+			break // Exit the loop afterupdating the task.
+		}
+
+		if !found {
+			fmt.Printf("Error: Task with ID %d not found.\n", id)
+		}
+	}
 }
 
 func deleteTask() {
