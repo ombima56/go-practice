@@ -20,7 +20,7 @@ func main() {
 	fmt.Println("3. Delete Task")
 	fmt.Println("4. Update Task")
 	fmt.Println("5. Exit")
-	fmt.Println("hoose an option: ")
+	fmt.Println("Choose an option: ")
 
 	var choice int
 	_, err := fmt.Scan(&choice)
@@ -62,7 +62,7 @@ func addTask() {
 	fmt.Scanln(&priority)
 
 	if priority < 1 || priority > 3 {
-		fmt.Println("Error: priority must be between 1 andd 3.")
+		fmt.Println("Error: priority must be between 1 and 3.")
 		return
 	}
 
